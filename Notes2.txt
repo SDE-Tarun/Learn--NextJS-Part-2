@@ -422,8 +422,5 @@ export default page
 DONE TILL DYNAMIC ROUTING NEXT WE WILL LEARN CONTEXT API
 --------------------------------------------------------
 
-CONTEXT API-
------------------------
-STEPS-
-------
+
 
