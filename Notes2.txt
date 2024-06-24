@@ -285,8 +285,141 @@ const page = () => {
 
 export default page
 
+DYNAMIC ROUTING-
+-----------------
+Ek folder banaya mene app ke andar [id] krke isme ek page.js file banayi
+page.js file ke andar mene rafce command se component banaya
+Fir mein apne Main page.js file mein gaya-
+------------------------------------------
+return <li>{e.username} --- <a href={`/${e.id}`}>Explore</a></li>
+Fir npm run dev kia
+Get Data button pe click toh username mile sath mein explore bhi ab jese hi explore par click kia mujhe route change hota dikha .
+for ex- http://localhost:3000/2
 
+Mujhe Get Data button pe click krke baar baar data lena pad raha hai, agar data already mil jaye toh usko kese krenge?
+----------------------------------------------------------------------------------------------------------------------
+useEffect mtlb lifecycle method use krenge
+useEffect?
+---------
+bane banaye function ko automatically call krdeta hai kese?
 
+Steps-
+-----
+1. useEffect likha enter mara import hojayega
+2. useEffect snippet likha, fir useEffect code dedia usme sab hatadia bas itna likho-
+     useEffect(() => {
+    getUsers() 
+        }, [])
 
+3. Ab mein data dekhna chahta hu toh id folder wali page.js mein kya krunga-
+   const page = ({params}) => {
+  console.log(params);
+  return (
+    <div>page</div>
+  )
+  }
+  Toh isey mujhe terminal par id mil rhi hogi-
+  --------------------------------------------
+   { id: '2' }
+4. console.log(params.id); --> 2
+5. Ab id toh mil rhi hai lekin mujhe is id ko use krna hai-
+   --------------------------------------------------------
+   const {id} = params; --> Isme jo id hogi usko ek alag variable ki tarah le lega vo.
+   Ab params mein object milega jisme key hogi id aur value hogi kuch uski.
+   Mein us id ki value nikalunga is id varibale mein se.
+   { id: '4' } --> console.log(params);
+   4 --> console.log(id);
+6. Ab mujhe data chaiye the na toh jo kaam mene Main page.js file mein kia tha vo copy karke,
+   id folder wali page.js file mein const {id} = params ke niche daldo.
+   Main page.js file mein se -
+   --------------------------
+  const [users, setusers] = useState([])
 
+  const getUsers = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users")
+    const data = res.data
+    // console.log(data);
+    setusers(data);
+  }
+
+  useEffect(() => {
+    getUsers() 
+  }, [])
+
+7. COPY THIS ABOVE CODE AND ITS IMPORTS LIKE BELOW const {id} = params line in [id] folder's page.js file -
+  --------------------------------------------------------------------------------------------------------
+  'use client'
+  import axios from 'axios'
+  import React, { useEffect, useState } from 'react'
+
+8. AB MUJHE ID DEKHNI HO HAR PAGE KI ID TOH MERI ID FOLDER WALI PAGE.JS FILE MEIN-
+--------------------------------------------
+<div>page {id}</div>
+
+9. EK AUR KAAM KARO-
+------------------
+URL ke aage / + id lagado --> Isey apko har page ki id bhi milegi url mein
+
+Aur yaha const getUsers = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users/"+id)
+    const data = res.data
+    console.log(data); --> Yaha milega object mtlb data us particular element ya id ka
+
+10. AB JO DATA AAYA EK CHOTA SA KAAM KARO-
+------------------------------------------
+const [users, setusers] = useState('')
+
+  const getUsers = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users/"+id)
+    const data = res.data
+    console.log(data);
+    setusers(data.username); --> variable mein data ka username dalo
+  }
+
+  useEffect(() => {
+    getUsers() 
+  }, [])
+
+  return (
+    <div>{users}</div> --> users mein aajayega jis bhi particular element ke naam pe explore krenge uska naam
+  )
+}
+
+[id] folder wali page.js file-
+-------------------------------
+'use client'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+
+const page = ({params}) => {
+  // console.log(params);
+  // console.log(params.id);
+  const {id} = params;
+  // console.log(params);
+  // console.log(id);
+
+  const [users, setusers] = useState([])
+
+  const getUsers = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users/"+id)
+    const data = res.data
+    console.log(data);
+    setusers(data);
+  }
+
+  useEffect(() => {
+    getUsers() 
+  }, [])
+
+  return (
+    <div>{JSON.stringify(users)}</div>
+  )
+}
+
+export default page
+
+CONTEXT API-
+-----------------------
+STEPS-
+------
 

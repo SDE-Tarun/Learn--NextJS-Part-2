@@ -13,9 +13,9 @@ const page = () => {
     setusers(data);
   }
 
-  // useEffect(() => {
-  //   getUsers() 
-  // }, [])
+  useEffect(() => {
+    getUsers() 
+  }, [])
   
 
   return (
@@ -24,7 +24,7 @@ const page = () => {
     <div className='p-8 bg-slate-100 mt-5'>
       <ul>
         {users.map((e)=>{
-          return <li>{e.username}</li>
+          return <li>{e.username} --- <a href={`/${e.id}`}>Explore</a></li>
         })}
       </ul>
     </div>
