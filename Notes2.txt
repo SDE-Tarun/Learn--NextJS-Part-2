@@ -740,3 +740,60 @@ theme: "dark",
 transition: Bounce,
 });
 
+Main page.js file-
+-----------------
+'use client'
+import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const page = () => {
+  const notify = () => {
+    // console.log('Hello');
+    // toast('Login Successful')
+    toast.success('🦄 Wow so easy!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  }
+  return (
+    <div>
+      <button onClick={notify}>Login</button>
+      <ToastContainer />
+    </div>
+  )
+}
+
+SERVER SIDE RENDERING VS CLIENT SIDE RENDERING-
+------------------------------------------------
+User -> Client side
+Developer -> Server side
+
+Note-
+-----
+Next Ke andar default mein h sever side rendering hoti hai.
+
+Deployement Via Netlify-
+-------------------------
+Deployment --> Mein apna project / folder sabhi ke liye available karana chahta hu.
+
+STEPS-
+------
+1. Sabse pehle apne folder ko github pr daldo.
+2. Fir render website par jao account banalo fir verify krlo aur connect krlo github ko
+   https://dashboard.render.com/create?type=web
+3. Fir Build and Deploy from a github repository.
+4. Fir Connect kro particular repository.
+5. Name dedo kuch - 
+6. Branch main
+7. Build Command - npm run build
+8. Publish Directory - build
+9. Click on Create Static files
+10. Folder Deploy hojayega.
+
