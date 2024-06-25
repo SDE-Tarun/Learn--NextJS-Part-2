@@ -517,9 +517,148 @@ HUM KYA CHAHTE HAI NAVBAR MEIN DIRECTLY DATA BHEJHNA?
 ---------------------------------------------------
 DATA KO EK ALAG CONTEXT BANAKE RAKHDENGE, TOH JISKO BHI DATA CHAHIYE TOH US CONTEXT SE JAKE LELO.
 
-HOW TO CREATE CONTEXT-
+HOW TO CREATE CONTEXT(Common place)-
 -----------------------
 Steps-
 -----
-1. 
+1. App ke andar ek Folder banao manlo mene banaya Helper naam ka folder.
+2. Helper folder ke andar ek file banayi Context.js
+3. Context.js ke andar rafce likha.
+4. Ab mein ek context create kar rha hun toh ek bana banaya function hota hai createContext and Enter Import hojayega.
+   mtlb ek jagah banayi jaha data rakhunga
+6. const Mycontext =  createContext() --> Mene Mycontext ke andar createContext ko save krlia
+7. Ab yahi sath ke sath mein kar raha hu isey export , export islye kyunki mein chahta hu mene jo context banaya hai isey sabhi log use kr ske.
+   export const Mycontext =  createContext() 
+8. Ab mein data manlo yahi context mein rakh leta hu.
+   Kese likhenge vo data ?
+   -----------------------
+   const username = 'Sarthak sharma'
+9. Ab mein chahta hu ki yeh jo username hai sare pages par available ho, jo chahe vo use kar le bina pass kre.
+10. Ab pass kese karenge?
+    ---------------------
+    Mtlb data sabhi ko provide karna hai through Context
+    <Mycontext.Provider>
+     {children}  -->  isme children likhdo mtlb
+    </ Mycontext.Provider> 
+    Aur context ke arrow function mein bhi {children} as params bhejho
+11. Ab apne layout.js wali file mein jao, kyunki mein pure layout ko h wrap krne wala hun.
+    Toh Layout. js file mein -
+    -------------------------
+    Mycontext ko Import kro without object krna padega.
+    import  Mycontext  from "./Helper/Context";
+12. Ab body ke andar jo children hai isko mujhe pass krna hai with the help of Mycontext isliye mene upar bhi children likha tha taki mein children ko pass karsaku mtlb -
+    <Mycontext> {children} </Mycontext>
+13. Aur mujhe data pass krna hai, toh data pass krunga as an value jisme username pass kia.
+   <Mycontext.Provider value={username}>
+     {children}
+    </Mycontext.Provider>
+14. Apne Context.js file mein use client likhdo top pe aur page.js file mein bhi
+15. Ab data toh rakhdia mene ek common place mein ab jisko lena h kese lega mtlb recieve kese krenge data-
+    -------------------------------------------------------------------------------------------------------
+    Main page.js file mein jake likha useContext aur Enter import hogya.
+    Ab is useContext ke andar mein likhunga Mycontext mtlb-
+    useContext(Mycontext)
+16. Ab apne useContext mein Mycontext likha toh ab ap data ko use kar pa rhe ho.
+17. const user = useContext(Mycontext)
+
+FLOW-
+-----
+useContext ke andar aaya Mycontext ka data
+                |
+aur Mycontext ke andar kya data pass kia hai? --> Context.js file mein isme apne value ke through username pass kia hai.
+                |
+Toh jb ap console.log(user) kroge page.js mein toh apko username ki value mil rhi hogi.
+                |
+return (
+  <div>{user}</div> --> Yaha aap user ko dikha skte ho
+)
+
+AB MANLO MUJHE YEH APNE HEADER AUR NAVBAR COMPONENT MEIN USE KRNA HAI MTLB DATA ACCESS KRNA HAI TOH MEIN KYA KRUNGA-
+--------------------------------------------------------------------------------------------------------------------
+const user = useContext(Mycontext)
+
+<div>{user}</div>
+
+Main Page.js file-
+------------------
+'use client'
+
+import React, { useContext } from 'react'
+import { Mycontext } from './Helper/Context'
+import Header from './Components/Header'
+import Navbar from './Components/Navbar'
+
+const page = () => {
+  const user = useContext( Mycontext)
+  console.log(user);
+  return (
+    <div>
+      {user}
+      <Header />
+      <Navbar/>
+      </div>
+
+  )
+}
+
+export default page
+
+Context.js file-
+----------------
+'use client'
+
+import React, { createContext } from 'react'
+
+export const Mycontext =  createContext()
+
+const Context = ({children}) => {
+   const username = 'Sarthak sharma'
+  return (
+    <div>
+    <Mycontext.Provider value={username}>
+     {children}
+    </Mycontext.Provider>
+    </div>
+  )
+}
+
+export default Context
+
+Header.js file mein-
+---------------------
+import React, { useContext } from 'react'
+import { Mycontext } from '../Helper/Context'
+
+const Header = () => {
+    const user = useContext(Mycontext)
+  return (
+    <div className='bg-green-200'>{user}</div>
+  )
+}
+
+export default Header
+
+Navbar.js file mein-
+--------------------
+import React, { useContext } from 'react'
+import { Mycontext } from '../Helper/Context'
+
+const Navbar = () => {
+    const user = useContext(Mycontext)
+  return (
+    <div className='bg-slate-600'>{user}</div>
+  )
+}
+
+export default Navbar
+
+NOTE-
+-----
+200-300 Components wali application i.e Small ke liye we use Context API.
+1000-2000 Components wali application i.e Large ke liye we use Redux Toolkit.
+
+
+
+
+
 
