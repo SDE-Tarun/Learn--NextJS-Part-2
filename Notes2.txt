@@ -422,5 +422,104 @@ export default page
 DONE TILL DYNAMIC ROUTING NEXT WE WILL LEARN CONTEXT API
 --------------------------------------------------------
 
+CONTEXT API-
+------------
+Manlo mein hu Main page pe
+Man lete hai Main Page ke andar ek section hai Header ka section mtlb ek aur page chla gya Header
+Mtlb Main Page se Header page mein data gaya.
+Ab manlo about Header ke andar ek section hai Navbar ka mtlb ek aur page chla gya Navbar.
+Mtlb Main Page se Header page mein data gaya aur Header page se data gya Navbar ke page mein 
+Main Page --> Header --> Navbar
 
+STEPS-
+-------
+1. Page.js file mein rafce command likho
+2. App folder ke andar ek Components folder banao
+3. Components folder mein Header.js file banao.
+4. Header.js file mein rafce likho.
+5. Main Page.j file mein useState import aur variable banao num aur uski value 10 rakhdo.
+6. Main Page.js file mein <Header num={num} /> Component ke sath variable bhejhna hai toh yeh likho
+7. Fir apne Header.js file mein jao aur as a prop Header ke function mein vo object recive karo.
+8. Ab ap yaha Homepage se Header mein data leke aa pa rhe ho, lekin mujhe Navbar mein bhejhna hai toh?
+8. Components folder mein Navbar.js file banao.
+9. Navbar.js file mein rafce likho.
+10. Fir apne Navbar.js file mein jao aur as a prop Navbar ke function mein vo object recive karo.
+11. Navbar mein return (
+    <div className='bg-green-800'>{props.num}</div>
+   )
+12. Finally mera data Homepage se Navbar mein bhejh dia mene.
+
+Main Page.js file code -
+------------------------
+'use client'
+import React, { useState } from 'react'
+import Header from './Components/Header'
+
+const page = () => {
+  const [num, setnum] = useState(10);
+  return (
+    <div>
+      This is Homepage
+      <Header num={num} />
+    </div>
+  )
+}
+
+Main page.js file mein apna varibale banaya using useState usme value dali.
+aur yaha se header component mein yeh variable send krdia.
+
+
+export default page
+
+Components folder wali Header.js file mein-
+-------------------------------------------
+import React from 'react'
+import Navbar from './Navbar'
+
+const Header = (props) => {
+    // console.log(props);
+    console.log(props.num);
+  return (
+    <div className='bg-red-800 p-5'>
+        This is my Header Page
+        <Navbar num={props.num} />
+     </div>
+  )
+}
+
+As a prop mein object mila jisme vo variable aur uski value hai aur navbar mein value bhejhni hai toh 
+mavbar component mein yeh variable send krdia jisme value hogi props object ke num ke pass.
+
+export default Header
+
+Components folder wali Navbar.js file mein-
+-------------------------------------------
+import React from 'react'
+
+const Navbar = (props) => {
+    // console.log(props);
+    console.log(props.num);
+  return (
+    <div className='bg-green-800'>{props.num}</div>
+  )
+}
+
+export default Navbar
+
+Jaha print krni h vaha props.num se value nikal lo.
+
+NOTE-
+-----
+ABHI KYA HO RAHA HAI NA KI DATA MERA BHEJHNA PAD RAHA H HEADER MEIN TABHI JA PA RHA HAI NAVBAR MEIN
+TOH HEADER MERA YAHA PE EK MIDDLE MAN HAI JO DATA BHIJWA RHA HAI BUT MUJHE YEH NAHI KARNA?
+
+HUM KYA CHAHTE HAI NAVBAR MEIN DIRECTLY DATA BHEJHNA?
+---------------------------------------------------
+DATA KO EK ALAG CONTEXT BANAKE RAKHDENGE, TOH JISKO BHI DATA CHAHIYE TOH US CONTEXT SE JAKE LELO.
+
+HOW TO CREATE CONTEXT-
+-----------------------
+Steps-
+-----
+1. 
 

@@ -1,8 +1,13 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import Header from './Components/Header'
 
 const page = () => {
+  const [num, setnum] = useState(10);
   return (
-    <div>page</div>
+    <div>
+      <Header num={num} />
+    </div>
   )
 }
 
