@@ -1,4 +1,22 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    padding: 20px;
+}
+
+button{
+    padding: 15px 30px;
+    background-color: lightseagreen;
+    border-radius: 5px;
+    color: #ffff;
+    border: none;
+    font-size: 30px;
+    font-weight: 600;
+}

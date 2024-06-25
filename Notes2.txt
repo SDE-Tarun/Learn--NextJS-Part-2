@@ -657,8 +657,86 @@ NOTE-
 200-300 Components wali application i.e Small ke liye we use Context API.
 1000-2000 Components wali application i.e Large ke liye we use Redux Toolkit.
 
+SHOWING FLASH MESSAGE (REACT TOASTIFY)
+--------------------------------------
+REACT TOASTIFY - EK LIBRARY HAI JISKI MADAD SE AP FLASH MESSAGE DIKHA SAKTE HO.
 
+Toastify ki Website ka link- https://fkhadra.github.io/react-toastify/introduction
 
+SHOW TOAST PE CLICK KRO DEMO DIKHAYEGA.
 
+STEPS-
+------
+1. Main page.js file mein jake rafce arrow component banalo.'
+2. Ek button banalo Login
+import React from 'react'
 
+const page = () => {
+  return (
+    <div>
+      <button>Login</button>
+    </div>
+  )
+}
+
+export default page
+
+3. Global.css file mein-
+   ---------------------
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    padding: 20px;
+}
+
+button{
+    padding: 15px 30px;
+    background-color: lightseagreen;
+    border-radius: 5px;
+    color: #ffff;
+    border: none;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+3. AB MEIN KYA CHAHTA HU JESE HI LOGIN PAR CLICK KARU TOH MUJHE FLASH MESSAGE DIKHE?
+   ---------------------------------------------------------------------------------
+   a. npm install --save react-toastify --> Install this
+   b. Fir Main page.js file min jao-
+      ------------------------------
+       Import kro - 
+       import { ToastContainer, toast } from 'react-toastify';
+       import 'react-toastify/dist/ReactToastify.css';
+   c. <ToastContainer /> --> Yeh bangya h jb call krunga tab dikhega.
+   d. Button pe onClick lagaunga {notify} naam ka function chala dena. --> <button onClick={notify}>Login</button>
+   e. function banaunga const notify = () => {
+       console.log('Hello')
+      }
+   f. 'use client' 
+   g. const notify = () => {
+    // console.log('Hello');
+      toast('Login Successful') --> Toh jb bhi ap login pe click kroge Yeh message flash hone lagega.
+     }
+  h. Agar position change krni h toh bydefault toh right mein h aayega-
+     -------------------------------------------------------------------
+     Documentation mein jao link - https://fkhadra.github.io/react-toastify/introduction
+     Niche set karo jo chahiye aur Toast Emitter vala code copy krke function ke andar yeh daldo log krne ki jagah.
+toast.success('🦄 Wow so easy!', {
+position: "top-center",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Bounce,
+});
 
